@@ -93,10 +93,9 @@ class Dealer:
 class AnalyzeHands():
 
     def score(players):
-        scores = []
+
         for player in players:
-            scores.append(player.score())
-        return scores
+            print(f"{player.name} has score {player.score()}")
 
 
 class Game():
@@ -106,14 +105,36 @@ class Game():
         self.players = []
         self.currentDeck = Deck()
 
-    def start_game():
-        pass
+    def add_players(self, no):
+        if no >= 2:
+            for i in range(no):
+                name = input(f"Welcome..Player:{i+1}. Please write your name")
+                player = Player(name)
+                self.players.append(player)
+        else:
+            print("There must be at least two playsers in a poker game")
 
-    def add_players():
-        pass
+    def showPlayers(self):
+        for count, p in enumerate(self.players):
+            print(f"Player {count+1}: {p.name}")
+
+    def start_game(self):
+        dealer = Dealer()
+        game.add_players(2)
+        dealer.shuffle()
+        for player in game.players:
+            dealer.dealCards(player, 5)
 
 
-deckOfCards = Deck()
+game = Game()
+game.start_game()
+for p in game.players:
+    print(f"Hand of {p.show()}: {p.showHand()}")
+
+AnalyzeHands.score(game.players)
+
+
+""" deckOfCards = Deck()
 deckOfCards.shuffle()
 player1 = Player("Slim")
 player2 = Player("Luke")
@@ -157,4 +178,4 @@ print(dealer.no_cards())
 scores = AnalyzeHands.score([player1, player2])
 print(f"{player1.show()}: {scores[0]}")
 print(f"{player2.show()}: {scores[1]}")
-print("---------------------------")
+print("---------------------------") """
